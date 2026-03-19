@@ -82,8 +82,19 @@
             object-fit: cover;
         }
 
-        .project-card:hover img {
-            transform: scale(1.1) translateY(-10px);
+        /* ELIMINACIÓN TOTAL DE LOGOS SUPERIORES */
+        /* Usamos un recorte drástico de la parte superior (aprox 15-20%) */
+        .remove-logo-top {
+            display: block;
+            /* Recortamos el 18% superior para asegurar que el logo desaparezca */
+            clip-path: inset(18% 0 0 0); 
+            /* Escalamos y desplazamos para rellenar el espacio del recorte */
+            transform: scale(1.25) translateY(8%); 
+            transform-origin: bottom;
+        }
+
+        .project-card:hover .remove-logo-top {
+            transform: scale(1.35) translateY(5%);
         }
 
         /* SECCIÓN SERVICIOS: FONDO GRIS OSCURO */
@@ -197,25 +208,33 @@
 
                 <!-- Fila 2 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- FOTO FILA 2, POSICIÓN 1: ELIMINADO LOGO SUPERIOR -->
                     <div class="project-card h-[450px]" data-aos="fade-up" data-aos-delay="100">
-                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200" alt="Sala de Estar de Lujo">
+                        <img src="https://i.imgur.com/qjhN5Fa.jpeg" alt="Sala de Estar de Lujo" class="remove-logo-top">
                     </div>
                     <div class="project-card h-[450px]" data-aos="fade-up" data-aos-delay="300">
                         <img src="https://i.imgur.com/5EbVc7n.jpeg" alt="Remodelación de Interiores">
                     </div>
                 </div>
                 
-                <!-- Fila 3: Imagen 1 actualizada -->
+                <!-- Fila 3: ZONA PARA CAMBIO MANUAL DE IMÁGENES -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- FOTO_CAMBIAR_1: ELIMINADO LOGO SUPERIOR -->
                     <div class="project-card aspect-square" data-aos="fade-left">
-                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" alt="Nueva Propuesta de Espacio">
+                        <img src="https://i.imgur.com/mRpzfpH.png" alt="FOTO_CAMBIAR_1" class="remove-logo-top">
                     </div>
+                    
+                    <!-- FOTO_CAMBIAR_2: ELIMINADO LOGO SUPERIOR -->
                     <div class="project-card aspect-square" data-aos="fade-left" data-aos-delay="150">
-                        <img src="https://i.imgur.com/ll92Mp0.jpeg" alt="Arquitectura Original 2">
+                        <img src="https://i.imgur.com/bJLIDLI.jpeg" alt="FOTO_CAMBIAR_2" class="remove-logo-top">
                     </div>
+                    
+                    <!-- FOTO_CAMBIAR_3: ELIMINADO LOGO SUPERIOR -->
                     <div class="project-card aspect-square" data-aos="fade-left" data-aos-delay="300">
-                        <img src="https://i.imgur.com/ebQV7nI.jpeg" alt="Arquitectura Original 3">
+                        <img src="https://i.imgur.com/pIwiJWJ.jpeg" alt="FOTO_CAMBIAR_3" class="remove-logo-top">
                     </div>
+
                 </div>
             </div>
         </div>

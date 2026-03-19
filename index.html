@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Lucy M. López Cabré | Arquitectura & Visualización</title>
+    
+    <!-- Scripts y Estilos Externos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #b58d67;
+            --gris-oscuro-servicios: #2d2d2d; 
+            --vibrant-blue: #2563eb;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero con imagen original */
+        .hero-bg {
+            position: relative;
+            background-image: url('https://i.imgur.com/8RsfUlK.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 100px; 
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Portafolio Limpio con Movimiento */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: #111;
+        }
+        
+        .project-card img {
+            transition: transform 1.2s cubic-bezier(0.2, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        /* SECCIÓN SERVICIOS: FONDO GRIS OSCURO */
+        .services-section {
+            background-color: var(--gris-oscuro-servicios);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: none;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .icon-box {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .service-card:hover .icon-box {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0; width: 0%; height: 3px;
+            background: var(--vibrant-blue);
+            z-index: 100;
+        }
+
+        .logo-nav {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            margin-left: -5px;
+        }
+
+        .text-shadow-premium {
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="scroll-progress" id="progressBar"></div>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 nav-glass border-b border-slate-100 transition-all duration-300" id="mainNav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tighter text-slate-900 group-hover:text-blue-600 transition-colors uppercase leading-none">Lucy M. López Cabré</span>
+                    <span class="text-[12px] tracking-[0.5em] text-black font-bold uppercase mt-1">Arquitecto</span>
+                </div>
+                <img src="https://i.imgur.com/ZDBvvVo.png" alt="Logo Lucy López" class="logo-nav">
+            </div>
+            <div class="hidden md:flex space-x-10">
+                <a href="#inicio" class="text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors">Inicio</a>
+                <a href="#portafolio" class="text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors">Portafolio</a>
+                <a href="#servicios" class="text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors">Servicios</a>
+                <a href="#contacto" class="text-[11px] font-bold uppercase tracking-widest text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-blue-600 pb-1">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Principal -->
+    <header id="inicio" class="hero-bg min-h-screen relative flex items-start">
+        <div class="max-w-7xl mx-auto px-6 w-full hero-content">
+            <div class="max-w-3xl" data-aos="fade-right">
+                <p class="text-blue-400 text-sm uppercase tracking-[0.5em] font-black mb-8 text-shadow-premium">Diseño y Remodelación a Distancia</p>
+                <h1 class="text-7xl md:text-9xl text-white font-bold mb-8 leading-[0.9] text-shadow-premium">
+                    Espacios <br>
+                    <span class="italic font-normal text-slate-100">para</span> vivir<span class="text-blue-500">.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-100 font-light leading-relaxed mb-12 max-w-xl text-shadow-premium">
+                    Transformación de planos y fotos acotadas en <span class="text-white font-semibold underline decoration-blue-500 decoration-4 underline-offset-8">espacios de lujo</span>, sin importar dónde se encuentre.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portafolio -->
+    <section id="portafolio" class="py-32 bg-[#000000]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-left mb-20" data-aos="fade-down">
+                <h2 class="text-5xl md:text-7xl text-white font-bold">Portafolio</h2>
+                <p class="text-blue-500 font-bold tracking-widest uppercase text-xs mt-4">Nuestra visión en cada detalle</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-8">
+                <!-- Fila 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="project-card aspect-square" data-aos="fade-up">
+                        <img src="https://i.imgur.com/ll92Mp0.jpeg" alt="Diseño Residencial Moderno">
+                    </div>
+                    <div class="project-card aspect-square" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://i.imgur.com/VZsqmkZ.jpeg" alt="Cocinas de Lujo">
+                    </div>
+                    <div class="project-card aspect-square" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://i.imgur.com/ebQV7nI.jpeg" alt="Detalles Arquitectónicos">
+                    </div>
+                </div>
+
+                <!-- Fila 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="project-card h-[450px]" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200" alt="Sala de Estar de Lujo">
+                    </div>
+                    <div class="project-card h-[450px]" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://i.imgur.com/5EbVc7n.jpeg" alt="Remodelación de Interiores">
+                    </div>
+                </div>
+                
+                <!-- Fila 3: Imagen 1 actualizada -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="project-card aspect-square" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" alt="Nueva Propuesta de Espacio">
+                    </div>
+                    <div class="project-card aspect-square" data-aos="fade-left" data-aos-delay="150">
+                        <img src="https://i.imgur.com/ll92Mp0.jpeg" alt="Arquitectura Original 2">
+                    </div>
+                    <div class="project-card aspect-square" data-aos="fade-left" data-aos-delay="300">
+                        <img src="https://i.imgur.com/ebQV7nI.jpeg" alt="Arquitectura Original 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-32 services-section">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-24" data-aos="fade-down">
+                <h2 class="text-5xl md:text-6xl font-bold text-white mb-6 uppercase tracking-tighter">Servicios</h2>
+                <div class="w-24 h-1.5 bg-white/40 mx-auto rounded-full"></div>
+                <p class="text-white/70 mt-6 font-bold uppercase tracking-[0.3em] text-[10px]">Arquitectura y Diseño Digital</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="service-card p-12 rounded-[2.5rem]" data-aos="fade-up">
+                    <div class="icon-box w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mb-8 mx-auto">
+                        <i class="fa-solid fa-pen-ruler text-[#8b4513] text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-serif mb-6 text-slate-900 italic font-bold leading-tight text-center">Diseño Integral</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-lg text-center">Conceptualización de espacios desde cero, entregando planos técnicos y precisos.</p>
+                </div>
+
+                <div class="service-card p-12 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mb-8 mx-auto">
+                        <i class="fa-solid fa-house-chimney-window text-[#cc4e2e] text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-serif mb-6 text-slate-900 italic font-bold leading-tight text-center">Remodelaciones</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-lg text-center">Maximice el potencial de su espacio utilizando materiales naturales y calidez.</p>
+                </div>
+
+                <div class="service-card p-12 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 mx-auto">
+                        <i class="fa-solid fa-cube text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-serif mb-6 text-slate-900 italic font-bold leading-none text-center whitespace-nowrap">Visualización 3D</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-lg text-center">Renders fotorrealistas de alta gama para visualizar su proyecto antes de construir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-32 bg-slate-950 text-white relative text-center">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6">¿Iniciamos su proyecto?</h2>
+            <div class="grid md:grid-cols-2 gap-8 mt-16">
+                <a href="https://wa.me/584143114927" target="_blank" class="p-10 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-all group">
+                    <i class="fa-brands fa-whatsapp text-green-400 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-2xl font-serif italic">+58 414 311 4927</p>
+                </a>
+                <div onclick="abrirCorreo()" class="p-10 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-all cursor-pointer group">
+                    <i class="fa-regular fa-envelope text-blue-400 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-2xl font-serif italic">lmlcabre@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-white text-center border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+            <div class="flex flex-col items-center gap-4">
+                <span class="text-xl font-black tracking-tighter text-slate-900 uppercase">Lucy M. López Cabré</span>
+                <img src="https://i.imgur.com/ZDBvvVo.png" alt="Logo Lucy López" class="logo-nav">
+            </div>
+            <p class="text-slate-500 text-[12px] mt-8 uppercase tracking-[0.2em] font-bold">© Visualización Arquitectónica Profesional.</p>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ 
+            once: true, 
+            duration: 1200, 
+            easing: 'ease-out-quint' 
+        });
+
+        function abrirCorreo() {
+            window.open("mailto:lmlcabre@gmail.com?subject=Consulta%20Proyecto", '_blank');
+        }
+
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            const bar = document.getElementById("progressBar");
+            if(bar) bar.style.width = scrolled + "%";
+
+            const nav = document.getElementById("mainNav");
+            if (winScroll > 50) {
+                nav.style.height = "70px";
+                nav.style.backgroundColor = "rgba(255, 255, 255, 0.98)";
+            } else {
+                nav.style.height = "80px";
+                nav.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+            }
+        };
+    </script>
+</body>
+</html>
